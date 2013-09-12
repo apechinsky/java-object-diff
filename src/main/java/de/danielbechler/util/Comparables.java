@@ -16,23 +16,29 @@
 
 package de.danielbechler.util;
 
-/** @author Daniel Bechler */
+/**
+ * @author Daniel Bechler
+ * @author Anton Pechinsky
+ */
 public class Comparables
 {
 	private Comparables()
 	{
 	}
 
+    /**
+     * Performs null-safe equality check for arguments implementing {@link Comparable}
+     */
 	public static <T extends Comparable<T>> boolean isEqualByComparison(final T a, final T b)
 	{
-		if (a != null)
-		{
-			return a.compareTo(b) == 0;
-		}
-		else if (b != null)
-		{
-			return b.compareTo(a) == 0;
-		}
-		return true;
+        if (a == b) {
+            return true;
+        }
+        else if (a == null || b == null) {
+            return false;
+        }
+        else {
+            return a.compareTo(b) == 0;
+        }
 	}
 }
